@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Plant Health Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Tomato Foliar Disease Diagnosis </h1>
+        <p class="subtitle">Advanced Plant Health Analyzer</p>
+        
+        <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+        <label for="imageUpload" class="button">Choose an image</label>
+        
+        <div id="imagePreview" class="image-preview"></div>
+        
+        <div id="analyzeButtonContainer" style="display: none;">
+            <button id="analyzeButton" class="button">Analyze</button>
+        </div>
+        
+        <div id="resultContainer" class="result-container" style="display: none;">
+            <h2>Analysis Result</h2>
+            <p id="predictedClass"></p>
+            <p id="probability"></p>
+        </div>
+        
+        <div class="info-cards">
+            <div class="card">
+                <h3>Symptoms <span class="icon">ℹ️</span></h3>
+                <p id="symptoms"></p>
+            </div>
+            <div class="card">
+                <h3>Remedies <span class="icon">💊</span></h3>
+                <p id="remedies"></p>
+            </div>
+            <div class="card">
+                <h3>Prevention <span class="icon">🛡️</span></h3>
+                <p id="prevention"></p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

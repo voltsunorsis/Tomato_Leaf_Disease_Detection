@@ -1,0 +1,4 @@
+steps too access the project using terminal:
+.\myplant\Scripts\Activate.ps1 
+cd src        
+python app.py 

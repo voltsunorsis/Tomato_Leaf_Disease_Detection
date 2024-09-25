@@ -1,0 +1,32 @@
+{
+    "Bacterial Spot": {
+      "symptoms": "Dark, water-soaked spots on leaves, fruit, and stems.",
+      "remedies": "Use copper-based fungicides and remove infected plant parts.",
+      "prevention": "Use disease-free seeds, practice crop rotation, and avoid overhead watering."
+    },
+    "Early Blight": {
+      "symptoms": "Brown spots with concentric rings on older leaves.",
+      "remedies": "Apply fungicides and remove affected leaves.",
+      "prevention": "Practice crop rotation, use resistant varieties, and maintain proper plant spacing."
+    },
+    "Healthy": {
+      "symptoms": "Vibrant green leaves, healthy fruit, and no signs of disease or nutrient deficiency.",
+      "remedies": "N/A",
+      "prevention": "Maintain proper watering, fertilization, and pest control practices."
+    },
+    "Late Blight": {
+      "symptoms": "Dark, water-soaked lesions on leaves, stems, and fruit.",
+      "remedies": "Apply fungicides and remove and destroy infected plants.",
+      "prevention": "Use resistant varieties, practice crop rotation, and avoid overhead watering."
+    },
+    "Septoria Leaf Spot": {
+      "symptoms": "Small, circular spots with dark borders on leaves.",
+      "remedies": "Apply fungicides and remove affected leaves.",
+      "prevention": "Use disease-free seeds, practice crop rotation, and avoid overhead watering."
+    },
+    "Yellow Leaf Curl Virus": {
+      "symptoms": "Curling and yellowing of leaves, stunted growth.",
+      "remedies": "Remove infected plants and control whitefly populations.",
+      "prevention": "Use resistant varieties and control whitefly populations."
+    }    
+}

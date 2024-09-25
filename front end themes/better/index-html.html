@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TomatoGuard: Advanced Plant Health Analyzer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="background-animation"></div>
+    <div class="container">
+        <header>
+            <h1>TomatoGuard</h1>
+            <p>Advanced Plant Health Analyzer</p>
+        </header>
+        
+        <main>
+            <div class="upload-section">
+                <label for="imageUpload" class="upload-button">Choose an image</label>
+                <input type="file" id="imageUpload" accept="image/*">
+            </div>
+
+            <div id="imagePreview" class="image-preview">
+                <div class="analysis-effect"></div>
+            </div>
+            
+            <button id="predictButton" class="predict-button" style="display: none;">Analyze</button>
+
+            <div id="result" class="result-card"></div>
+
+            <div class="info-container">
+                <div class="info-card" id="symptoms">
+                    <div class="card-header">
+                        <h3>Symptoms</h3>
+                        <div class="icon-symptoms"></div>
+                    </div>
+                    <p></p>
+                </div>
+                <div class="info-card" id="remedies">
+                    <div class="card-header">
+                        <h3>Remedies</h3>
+                        <div class="icon-remedies"></div>
+                    </div>
+                    <p></p>
+                </div>
+                <div class="info-card" id="prevention">
+                    <div class="card-header">
+                        <h3>Prevention</h3>
+                        <div class="icon-prevention"></div>
+                    </div>
+                    <p></p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

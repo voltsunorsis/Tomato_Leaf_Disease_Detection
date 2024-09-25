@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TomatoGuard - Plant Health Analyzer</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 1000%;
+            font-family: 'Arial', sans-serif;
+            
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .top-bar {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            overflow: hidden;
+        }
+        .marquee {
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 20s linear infinite;
+            color:#e53935
+        }
+        @keyframes marquee {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+        .content {
+            display: flex;
+            flex: 1;
+        }
+        .left-sidebar, .right-sidebar {
+            width: 20%;
+            background-color: #f0f4f0;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .upload-section {
+            margin-bottom: 20px;
+        }
+        .upload-button, .predict-button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .upload-button:hover, .predict-button:hover {
+            background-color: #45a049;
+        }
+        .image-preview {
+            max-width: 100%;
+            height: 300px;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f4f0;
+            border: 2px dashed #4caf50;
+            border-radius: 10px;
+        }
+        .image-preview img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .result-card, .info-card {
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        .info-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 500px;
+        }
+        .sidebar-section {
+            margin-bottom: 20px;
+        }
+        .sidebar-section h2 {
+            color: #4caf50;
+            border-bottom: 2px solid #4caf50;
+            padding-bottom: 5px;
+        }
+        .sidebar-section ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .sidebar-section li {
+            margin-bottom: 10px;
+        }
+        .product {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .product img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+        .product a {
+            display: inline-block;
+            background-color: #4caf50;
+            color: white;
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 3px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-bar">
+            <div class="marquee">
+                <span>This mini project is developed by Akshay, Niranjan, Yeshwant and Vijay of DEPT.AIML, EWIT.</span>
+            </div>
+        </div>
+        <div class="content">
+            <div class="left-sidebar">
+                <div class="sidebar-section">
+                    <h2>Tomato Plant Facts</h2>
+                    <ul>
+                        <li>Tomatoes are rich in vitamins A and C</li>
+                        <li>They are actually a fruit, not a vegetable</li>
+                        <li>Tomatoes can help reduce the risk of heart disease</li>
+                        <li>They contain lycopene, a powerful antioxidant</li>
+                        <li>Tomatoes are 95% water</li>
+                    </ul>
+                </div>
+                <div class="sidebar-section">
+                    <h2>Common Tomato Diseases</h2>
+                    <ul>
+                        <li>Bacterial Spot</li>
+                        <li>Early Blight</li>
+                        <li>Late Blight</li>
+                        <li>Septoria Leaf Spot</li>
+                        <li>Yellow Leaf Curl Virus</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="main-content">
+                <h1><span style="color: #e53935;">Tomato</span><span style="color: #2ed936;">Guard</span></h1>
+                <p>Advanced Plant Health Analyzer</p>
+                <div class="upload-section">
+                    <label for="imageUpload" class="upload-button">Choose an image</label>
+                    <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                </div>
+                <div id="imagePreview" class="image-preview">
+                    <p>No image selected</p>
+                </div>
+                <button id="predictButton" class="predict-button" style="display: none;">Analyze</button>
+                <div id="result" class="result-card" style="display: none;"></div>
+                <div class="info-container">
+                    <div id="symptoms" class="info-card" style="display: none;"></div>
+                    <div id="remedies" class="info-card" style="display: none;"></div>
+                    <div id="prevention" class="info-card" style="display: none;"></div>
+                </div>
+            </div>
+            <div class="right-sidebar">
+                <div class="sidebar-section">
+                    <h2>Related Products</h2>
+                    <div class="product">
+                        <img src="H:\mini project\fungi.jpg" height="50px" width="50px" alt="Organic Fungicide" />
+                        <p>Organic Fungicide</p>
+                        <a href="https://www.forestrydistributing.com/omri-listed-organic-fungicides">Buy Now</a>
+                    </div>
+                    <div class="product">
+                        <img src="/api/placeholder/150/150" alt="Tomato Plant Fertilizer" />
+                        <p>Tomato Plant Fertilizer</p>
+                        <a href="#">Buy Now</a>
+                    </div>
+                </div>
+                <div class="sidebar-section">
+                    <h2>Useful Links</h2>
+                    <ul>
+                        <li><a href="#">Tomato Gardening Tips</a></li>
+                        <li><a href="#">Disease Prevention Guide</a></li>
+                        <li><a href="#">Organic Pest Control</a></li>
+                        <li><a href="#">Tomato Varieties Guide</a></li>
+                        <li><a href="#">Companion Planting for Tomatoes</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const imageUpload = document.getElementById('imageUpload');
+            const imagePreview = document.getElementById('imagePreview');
+            const predictButton = document.getElementById('predictButton');
+            const resultCard = document.getElementById('result');
+
+            imageUpload.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        imagePreview.innerHTML = `<img src="${e.target.result}" alt="Uploaded tomato leaf">`;
+                        predictButton.style.display = 'inline-block';
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            predictButton.addEventListener('click', function() {
+                const file = imageUpload.files[0];
+                if (file) {
+                    const formData = new FormData();
+                    formData.append('image', file);
+
+                    predictButton.textContent = 'Analyzing...';
+                    predictButton.disabled = true;
+
+                    fetch('/predict', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        resultCard.innerHTML = `
+                            <h3>Analysis Result</h3>
+                            <p>Predicted class: ${data.class}</p>
+                            <p>Probability: ${(data.probability * 100).toFixed(2)}%</p>
+                        `;
+                        resultCard.style.display = 'block';
+
+                        document.getElementById('symptoms').innerHTML = `
+                            <h3>Symptoms</h3>
+                            <p>${data.symptoms}</p>
+                        `;
+                        document.getElementById('remedies').innerHTML = `
+                            <h3>Remedies</h3>
+                            <p>${data.remedies}</p>
+                        `;
+                        document.getElementById('prevention').innerHTML = `
+                            <h3>Prevention</h3>
+                            <p>${data.prevention}</p>
+                        `;
+
+                        document.querySelectorAll('.info-card').forEach(card => {
+                            card.style.display = 'block';
+                        });
+
+                        predictButton.textContent = 'Analyze';
+                        predictButton.disabled = false;
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        resultCard.innerHTML = '<p>An error occurred during analysis.</p>';
+                        resultCard.style.display = 'block';
+                        predictButton.textContent = 'Analyze';
+                        predictButton.disabled = false;
+                    });
+                } else {
+                    alert('Please select an image first.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
